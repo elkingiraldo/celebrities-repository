@@ -16,11 +16,11 @@ You can add, remove or change data into the H2 embbeded DB with these informatio
 
 1. If you want to access to the embedded DB,  you can copy the following link in a internet browser. ==>  http://localhost:8080/console/login.jsp
 2. The information to access to the DB is:
-    2.1. JDBC URL: jdbc:h2:mem:example-app;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    2.2. User Name: celebritiesDBUser
-    2.3.  Password: celebritiesDBPwd
-    2.4.  Driver Class: org.h2.Driver
+    - JDBC URL: jdbc:h2:mem:example-app;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    - User Name: celebritiesDBUser
+    -  Password: celebritiesDBPwd
+    -  Driver Class: org.h2.Driver
 
 # Tables
-There are two tables, the first one PEOPLE with: ID, FIRST_NAME and LAST_NAME and the second one PERSON_KNOWN_PEOPLE with PERSON_ID and KNOWN_PEOPLE.
-In the first table we have the people information and in the second one we have the relation "He/she knows him/her"
+1. There are two tables, the first one PEOPLE with: ID, FIRST_NAME and LAST_NAME and the second one PERSON_KNOWN_PEOPLE with PERSON_ID and KNOWN_PEOPLE.
+2. In the first table we have the people information and in the second one we have the relation "He/she knows him/her"
