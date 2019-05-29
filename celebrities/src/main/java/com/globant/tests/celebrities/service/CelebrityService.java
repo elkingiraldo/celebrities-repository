@@ -8,12 +8,24 @@ import com.globant.tests.celebrities.model.entity.Person;
 import com.globant.tests.celebrities.model.repository.IPersonRepository;
 import com.globant.tests.celebrities.util.Constants;
 
+/**
+ * Service related with the celebrity search criteria
+ * 
+ * @author elkin.giraldo
+ *
+ */
 @Service
 public class CelebrityService {
 
 	@Autowired
 	private IPersonRepository personRepository;
 
+	/**
+	 * This method will build the response to the client, knowing the information
+	 * retrieved from the database.
+	 * 
+	 * @return String with the response handled
+	 */
 	public String findCelebrity() {
 
 		String response = "";

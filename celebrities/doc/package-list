@@ -1,0 +1,6 @@
+com.globant.tests.celebrities
+com.globant.tests.celebrities.controller
+com.globant.tests.celebrities.model.entity
+com.globant.tests.celebrities.model.repository
+com.globant.tests.celebrities.service
+com.globant.tests.celebrities.util

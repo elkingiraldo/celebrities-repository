@@ -1,5 +1,11 @@
 package com.globant.tests.celebrities.util;
 
+/**
+ * This utility has all constant that we will use in the entire project
+ * 
+ * @author elkin.giraldo
+ *
+ */
 public final class Constants {
 
 	public static final String CELEBRITY_FOUND = "There is a celebrity in the team with the following information => Person ID: %s, Fist Name: %s, Last Name: %s, Confirm that is a celebrity: %s";
