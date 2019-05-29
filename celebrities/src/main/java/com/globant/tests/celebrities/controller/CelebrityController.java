@@ -2,6 +2,7 @@ package com.globant.tests.celebrities.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.globant.tests.celebrities.service.CelebrityService;
@@ -12,7 +13,8 @@ import com.globant.tests.celebrities.service.CelebrityService;
  * @author elkin.giraldo
  *
  */
-@RestController(value = "/celebrity")
+@RestController
+@RequestMapping("/celebrity")
 public class CelebrityController {
 
 	@Autowired
