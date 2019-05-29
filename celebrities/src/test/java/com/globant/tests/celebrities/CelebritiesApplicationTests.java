@@ -11,6 +11,7 @@ public class CelebritiesApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		CelebritiesApplication.main(new String[] {});
 	}
 
 }

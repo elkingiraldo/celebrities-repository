@@ -60,10 +60,4 @@ public class Person implements Serializable {
 		this.isCelebrity = isCelebrity;
 	}
 
-	@Override
-	public String toString() {
-		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", isCelebrity="
-				+ isCelebrity + "]";
-	}
-
 }

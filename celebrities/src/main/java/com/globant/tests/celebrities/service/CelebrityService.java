@@ -18,7 +18,8 @@ public class CelebrityService {
 		final Person celebrity = personRepository.findByIsCelebrity(true);
 
 		if (celebrity != null) {
-			return String.format(Constants.CELEBRITY_FOUND, celebrity.getFirstName(), celebrity.getLastName());
+			return String.format(Constants.CELEBRITY_FOUND, celebrity.getId(), celebrity.getFirstName(),
+					celebrity.getLastName(), celebrity.isCelebrity());
 		}
 
 		return Constants.CELEBRITY_NOT_FOUND;
