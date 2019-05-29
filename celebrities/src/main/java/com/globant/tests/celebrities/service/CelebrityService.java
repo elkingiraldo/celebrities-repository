@@ -1,6 +1,7 @@
 package com.globant.tests.celebrities.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.globant.tests.celebrities.model.entity.Person;
@@ -15,14 +16,24 @@ public class CelebrityService {
 
 	public String findCelebrity() {
 
-		final Person celebrity = personRepository.findByIsCelebrity(true);
+		String response = "";
 
-		if (celebrity != null) {
-			return String.format(Constants.CELEBRITY_FOUND, celebrity.getId(), celebrity.getFirstName(),
-					celebrity.getLastName(), celebrity.isCelebrity());
+		try {
+			final Person celebrity = personRepository.findByIsCelebrity(true);
+
+			if (celebrity != null) {
+				response = String.format(Constants.CELEBRITY_FOUND, celebrity.getId(), celebrity.getFirstName(),
+						celebrity.getLastName(), celebrity.isCelebrity());
+			} else {
+				response = Constants.CELEBRITY_NOT_FOUND;
+			}
+
+		} catch (final IncorrectResultSizeDataAccessException e) {
+			return Constants.MORE_THAN_ONE_CELEBRITY;
 		}
 
-		return Constants.CELEBRITY_NOT_FOUND;
+		return response;
+
 	}
 
 }

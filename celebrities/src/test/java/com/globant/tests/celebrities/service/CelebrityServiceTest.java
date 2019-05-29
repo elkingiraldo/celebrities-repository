@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 
 import com.globant.tests.celebrities.model.entity.Person;
 import com.globant.tests.celebrities.model.repository.IPersonRepository;
@@ -34,18 +35,25 @@ public class CelebrityServiceTest {
 	}
 
 	@Test
-	public void celebretyNotFoundReturnCorrectMessage() {
+	public void celebrityNotFoundReturnCorrectMessage() {
 		when(personRepository.findByIsCelebrity(true)).thenReturn(null);
 		final String msg = celebrityService.findCelebrity();
 		assertEquals(Constants.CELEBRITY_NOT_FOUND, msg);
 	}
 
 	@Test
-	public void celebretyFoundReturnCorrectMessage() {
+	public void celebrityFoundReturnCorrectMessage() {
 		when(personRepository.findByIsCelebrity(true)).thenReturn(person);
 		final String msg = celebrityService.findCelebrity();
 		assertEquals(String.format(Constants.CELEBRITY_FOUND, person.getId(), person.getFirstName(),
 				person.getLastName(), person.isCelebrity()), msg);
+	}
+
+	@Test
+	public void thereAreMoreThanOneCelebrity() {
+		when(personRepository.findByIsCelebrity(true)).thenThrow(IncorrectResultSizeDataAccessException.class);
+		final String msg = celebrityService.findCelebrity();
+		assertEquals(Constants.MORE_THAN_ONE_CELEBRITY, msg);
 	}
 
 }
