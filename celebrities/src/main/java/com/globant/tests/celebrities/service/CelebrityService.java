@@ -41,16 +41,17 @@ public class CelebrityService {
 		int right = listSize - 1;
 
 		while (left < right) {
-			if (knows(allPeople.get(left), allPeople.get(right)))// knows(left, right)
+			if (knows(allPeople.get(left), allPeople.get(right))) {
 				left++;
-			else
+			} else {
 				right--;
+			}
 		}
 
 		final int celebrity = left;
 		for (int i = 0; i < listSize; i++) {
-			if (i != left && (knows(allPeople.get(left), allPeople.get(i))
-					|| !knows(allPeople.get(i), allPeople.get(left)))) {
+			if (i != celebrity && (knows(allPeople.get(celebrity), allPeople.get(i))
+					|| !knows(allPeople.get(i), allPeople.get(celebrity)))) {
 				return Constants.CELEBRITY_NOT_FOUND;
 			}
 		}
