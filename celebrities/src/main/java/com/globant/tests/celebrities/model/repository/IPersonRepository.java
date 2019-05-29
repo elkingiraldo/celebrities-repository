@@ -6,4 +6,6 @@ import com.globant.tests.celebrities.model.entity.Person;
 
 public interface IPersonRepository extends JpaRepository<Person, Long> {
 
+	public Person findByIsCelebrity(final boolean isCelebrity);
+
 }
