@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.globant.tests</groupId>
 	<artifactId>celebrities</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1-RELEASE</version>
 	<name>celebrities</name>
 	<description>This project will analyze a database for knowing which is the celebrity in a team</description>
 
