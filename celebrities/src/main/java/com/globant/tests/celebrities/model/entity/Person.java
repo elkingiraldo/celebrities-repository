@@ -1,9 +1,13 @@
 package com.globant.tests.celebrities.model.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,8 +29,9 @@ public class Person implements Serializable {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Column(name = "is_celebrity")
-	private boolean isCelebrity;
+	@ElementCollection(fetch = FetchType.LAZY)
+	@Column(name = "known_people")
+	private Set<Long> knownPeople = new HashSet<Long>();
 
 	public Long getId() {
 		return id;
@@ -52,12 +57,12 @@ public class Person implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public boolean isCelebrity() {
-		return isCelebrity;
+	public Set<Long> getKnownPeople() {
+		return knownPeople;
 	}
 
-	public void setCelebrity(final boolean isCelebrity) {
-		this.isCelebrity = isCelebrity;
+	public void setKnownPeople(final Set<Long> knownPeople) {
+		this.knownPeople = knownPeople;
 	}
 
 }

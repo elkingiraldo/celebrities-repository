@@ -1,7 +1,8 @@
 package com.globant.tests.celebrities.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.globant.tests.celebrities.model.entity.Person;
@@ -9,7 +10,8 @@ import com.globant.tests.celebrities.model.repository.IPersonRepository;
 import com.globant.tests.celebrities.util.Constants;
 
 /**
- * Service related with the celebrity search criteria
+ * Service related with the celebrity search criteria but with an alternative
+ * approach
  * 
  * @author elkin.giraldo
  *
@@ -28,24 +30,52 @@ public class CelebrityService {
 	 */
 	public String findCelebrity() {
 
-		String response = "";
+		final List<Person> allPeople = personRepository.findAll();
+		final int listSize = allPeople.size();
 
-		try {
-			final Person celebrity = personRepository.findByIsCelebrity(true);
-
-			if (celebrity != null) {
-				response = String.format(Constants.CELEBRITY_FOUND, celebrity.getId(), celebrity.getFirstName(),
-						celebrity.getLastName(), celebrity.isCelebrity());
-			} else {
-				response = Constants.CELEBRITY_NOT_FOUND;
-			}
-
-		} catch (final IncorrectResultSizeDataAccessException e) {
-			return Constants.MORE_THAN_ONE_CELEBRITY;
+		if (listSize <= 1) {
+			return Constants.MIN_TWO_PEOPLE_REQUIRED;
 		}
 
-		return response;
+		int left = 0;
+		int right = listSize - 1;
 
+		while (left < right) {
+			if (knows(allPeople.get(left), allPeople.get(right)))// knows(left, right)
+				left++;
+			else
+				right--;
+		}
+
+		final int celebrity = left;
+		for (int i = 0; i < listSize; i++) {
+			if (i != left && (knows(allPeople.get(left), allPeople.get(i))
+					|| !knows(allPeople.get(i), allPeople.get(left)))) {
+				return Constants.CELEBRITY_NOT_FOUND;
+			}
+		}
+
+		final Person celebrityFound = allPeople.get(celebrity);
+		final String responseCelebrityFound = String.format(Constants.CELEBRITY_FOUND, celebrityFound.getId(),
+				celebrityFound.getFirstName(), celebrityFound.getLastName());
+		return responseCelebrityFound;
+
+	}
+
+	/**
+	 * This method will take two PersonObject and it will response if the first
+	 * person knows the second one
+	 * 
+	 * @param leftPerson, {@link Person} Person that we will ask for the other one
+	 * @param rightPerson, {@link} Person that we want to know if the first one
+	 *        knows
+	 * @return boolean knowing if the person 1 knows person 2
+	 */
+	private boolean knows(final Person leftPerson, final Person rightPerson) {
+		if (leftPerson.getKnownPeople().contains(new Long(rightPerson.getId()))) {
+			return true;
+		}
+		return false;
 	}
 
 }
