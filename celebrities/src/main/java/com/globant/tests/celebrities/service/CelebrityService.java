@@ -57,9 +57,8 @@ public class CelebrityService {
 		}
 
 		final Person celebrityFound = allPeople.get(celebrity);
-		final String responseCelebrityFound = String.format(Constants.CELEBRITY_FOUND, celebrityFound.getId(),
-				celebrityFound.getFirstName(), celebrityFound.getLastName());
-		return responseCelebrityFound;
+		return String.format(Constants.CELEBRITY_FOUND, celebrityFound.getId(), celebrityFound.getFirstName(),
+				celebrityFound.getLastName());
 
 	}
 
@@ -73,10 +72,7 @@ public class CelebrityService {
 	 * @return boolean knowing if the person 1 knows person 2
 	 */
 	private boolean knows(final Person leftPerson, final Person rightPerson) {
-		if (leftPerson.getKnownPeople().contains(new Long(rightPerson.getId()))) {
-			return true;
-		}
-		return false;
+		return leftPerson.getKnownPeople().contains(rightPerson.getId());
 	}
 
 }

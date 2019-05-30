@@ -29,9 +29,9 @@ public class Person implements Serializable {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@ElementCollection(fetch = FetchType.LAZY)
+	@ElementCollection(fetch = FetchType.EAGER)
 	@Column(name = "known_people")
-	private Set<Long> knownPeople = new HashSet<Long>();
+	private Set<Long> knownPeople = new HashSet<>();
 
 	public Long getId() {
 		return id;

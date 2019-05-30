@@ -8,6 +8,10 @@ package com.globant.tests.celebrities.util;
  */
 public final class Constants {
 
+	private Constants() {
+		throw new IllegalStateException("Constants class");
+	}
+
 	public static final String CELEBRITY_FOUND = "There is a celebrity in the team with the following information => Person ID: %s, Fist Name: %s, Last Name: %s";
 	public static final String CELEBRITY_NOT_FOUND = "There isn't a celebrity in the team";
 	public static final String MIN_TWO_PEOPLE_REQUIRED = "It is mandatory to have minimum two people to execute the algorithm";
